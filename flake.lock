@@ -1,0 +1,111 @@
+{
+  "nodes": {
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "iso639-lang": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1779382227,
+        "narHash": "sha256-A65yZVQ9oiJHHPkjPetqqHe6MtR+kR6Mzxz4m6fHsgY=",
+        "owner": "jgus",
+        "repo": "iso639-lang-flake",
+        "rev": "380593bb4a67d4ce7dedd8f59a987f4923bcac63",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jgus",
+        "ref": "v2.6.3",
+        "repo": "iso639-lang-flake",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1779259093,
+        "narHash": "sha256-7DKWmH23hL2eYdkxCKeqj2i+yljTKuU+3Nk1UPHOnxc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d99b013d5d1931ad77fe3912ed218170dec5d9a4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "iso639-lang": "iso639-lang",
+        "nixpkgs": "nixpkgs",
+        "slskd-api": "slskd-api"
+      }
+    },
+    "slskd-api": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1779380264,
+        "narHash": "sha256-m4Lqc8lsf+Ewt1Z2k2IDIboJd0H10Ns2PME0oB9uh+M=",
+        "owner": "jgus",
+        "repo": "slskd-api-flake",
+        "rev": "bbee84609a45bfd51a240b88f2fb28ff2f7a0393",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jgus",
+        "ref": "v0.2.4",
+        "repo": "slskd-api-flake",
+        "type": "github"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
