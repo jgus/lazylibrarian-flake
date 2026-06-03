@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    flake-lib = {
+      url = "github:jgus/flake-lib/v1";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
     slskd-api = {
       url = "github:jgus/slskd-api-flake/v0.2.4";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,12 +22,13 @@
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, slskd-api, iso639-lang }:
+  outputs = { self, nixpkgs, flake-utils, flake-lib, slskd-api, iso639-lang }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pin = import ./pin.nix;
         inherit (pin) version sourceRev sourceHash;
         pkgs = import nixpkgs { inherit system; };
+        source = { type = "gitlab"; owner = "LazyLibrarian"; repo = "LazyLibrarian"; };
         slskd-api-pkg = slskd-api.packages.${system}.slskd-api;
         iso639-lang-pkg = iso639-lang.packages.${system}.iso639-lang;
         python = pkgs.python3.withPackages (ps: with ps; [
@@ -73,15 +79,21 @@
           '';
           meta.mainProgram = "lazylibrarian";
         };
-        update-version = pkgs.writeShellApplication {
-          name = "update-version";
-          text = ''exec ${./update-version.sh} "$@"'';
-        };
       in
       {
         packages = {
-          inherit lazylibrarian update-version;
+          inherit lazylibrarian;
           default = lazylibrarian;
+          # Single-branch (tracks master as 0-unstable-DATE); no update-branches orchestrator.
+          # Upstream's uv-compiled requirements.txt pins siblings exactly (==X.Y.Z) -> exact-branch refs.
+          update-version = flake-lib.lib.mkUpdateVersion {
+            inherit pkgs source;
+            buildAttr = "lazylibrarian";
+            siblings = [
+              { reqName = "slskd-api"; flakeRepo = "jgus/slskd-api-flake"; mode = "exact"; }
+              { reqName = "iso639-lang"; flakeRepo = "jgus/iso639-lang-flake"; mode = "exact"; }
+            ];
+          };
         };
       });
 }
