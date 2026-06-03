@@ -13,12 +13,14 @@
       url = "github:jgus/slskd-api-flake/v0.2.4";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
+      inputs.flake-lib.follows = "flake-lib";
     };
     iso639-lang = {
       # iso639-lang: similar-name nixpkgs siblings (`python-iso639`, `iso-639`) aren't substitutes — upstream imports the `Lang` class from `iso639-lang`.
       url = "github:jgus/iso639-lang-flake/v2.6.3";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
+      inputs.flake-lib.follows = "flake-lib";
     };
   };
 
